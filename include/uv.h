@@ -211,7 +211,7 @@ typedef struct uv_handle_s uv_handle_t;
 typedef struct uv_dir_s uv_dir_t;
 typedef struct uv_stream_s uv_stream_t;
 typedef struct uv_tcp_s uv_tcp_t;
-typedef struct uv_udp_s uv_udp_t;
+typedef union  uv_udp_u uv_udp_t;
 typedef struct uv_pipe_s uv_pipe_t;
 typedef struct uv_tty_s uv_tty_t;
 typedef struct uv_poll_s uv_poll_t;
@@ -616,7 +616,9 @@ typedef void (*uv_udp_recv_cb)(uv_udp_t* handle,
                                unsigned flags);
 
 /* uv_udp_t is a subclass of uv_handle_t. */
-struct uv_udp_s {
+union uv_udp_u {
+    uv_handle_t _handle;
+    struct {
   UV_HANDLE_FIELDS
   /* read-only */
   /*
@@ -629,6 +631,7 @@ struct uv_udp_s {
    */
   size_t send_queue_count;
   UV_UDP_PRIVATE_FIELDS
+    };
 };
 
 /* uv_udp_send_t is a subclass of uv_req_t. */

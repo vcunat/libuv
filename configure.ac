@@ -29,7 +29,7 @@ AS_IF([AS_CASE([$host_os],[openedition*],  [false], [true])], [
 ])
 CC_FLAG_VISIBILITY #[-fvisibility=hidden]
 CC_CHECK_CFLAGS_APPEND([-g])
-CC_CHECK_CFLAGS_APPEND([-std=gnu89])
+CC_CHECK_CFLAGS_APPEND([-std=gnu11])
 CC_CHECK_CFLAGS_APPEND([-Wall])
 CC_CHECK_CFLAGS_APPEND([-Wextra])
 CC_CHECK_CFLAGS_APPEND([-Wno-long-long])
